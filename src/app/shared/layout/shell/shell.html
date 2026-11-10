@@ -1,0 +1,21 @@
+<div class="flex min-h-dvh">
+  <ptf-sidebar
+    [open]="sidebarOpen()"
+    [brand]="profile().name"
+    [role]="profile().role"
+    [availability]="profile().availability"
+    (close)="closeSidebar()"
+  />
+
+  <div class="flex min-w-0 flex-1 flex-col">
+    <ptf-topbar
+      [title]="title()"
+      [availability]="profile().availability"
+      (menuClick)="openSidebar()"
+    />
+
+    <main class="mx-auto w-full max-w-container-max flex-1 px-4 py-6 md:px-8">
+      <router-outlet />
+    </main>
+  </div>
+</div>

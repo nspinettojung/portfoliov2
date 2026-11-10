@@ -1,0 +1,78 @@
+<article class="space-y-6">
+  <a
+    routerLink="/projects"
+    class="inline-flex items-center gap-2 font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary"
+  >
+    <ptf-icon name="arrow_back" size="sm" />
+    Volver a proyectos
+  </a>
+
+  @if (project(); as project) {
+    <div class="glass-card overflow-hidden rounded-3xl">
+      <div class="relative aspect-video max-h-[420px] overflow-hidden">
+        <img [src]="project.imageUrl" [alt]="project.title" class="h-full w-full object-cover" />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-surface-container-lowest/20 to-transparent"
+        ></div>
+
+        <div class="absolute inset-x-0 bottom-0 space-y-3 p-6 md:p-8">
+          @if (project.badge) {
+            <ptf-badge variant="primary">{{ project.badge }}</ptf-badge>
+          }
+          <h1 class="font-headline-lg text-headline-lg text-on-surface">{{ project.title }}</h1>
+        </div>
+      </div>
+
+      <div class="space-y-6 p-6 md:p-8">
+        <p class="max-w-3xl font-body-lg text-body-lg text-on-surface-variant">
+          {{ project.description }}
+        </p>
+
+        <div class="flex flex-wrap gap-2">
+          @for (tag of project.tags; track $index) {
+            <ptf-badge variant="neutral">{{ tag }}</ptf-badge>
+          }
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          @if (project.demoUrl) {
+            <a
+              [href]="project.demoUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 font-label-md text-label-md text-on-primary transition-all hover:bg-primary-container active:scale-95"
+            >
+              Ver demo
+              <ptf-icon name="open_in_new" size="sm" />
+            </a>
+          }
+
+          @if (project.repoUrl) {
+            <a
+              [href]="project.repoUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl border border-outline px-5 py-2.5 font-label-md text-label-md text-on-surface transition-all hover:bg-surface-container-high active:scale-95"
+            >
+              Ver código
+              <ptf-icon name="code" size="sm" />
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="glass-card rounded-2xl p-8 text-center">
+      <p class="font-headline-md text-headline-md text-on-surface">Proyecto no encontrado</p>
+      <p class="mt-2 font-body-md text-body-md text-on-surface-variant">
+        El proyecto que buscás no existe o cambió de nombre.
+      </p>
+      <a
+        routerLink="/projects"
+        class="mt-6 inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 font-label-md text-label-md text-on-primary transition-all hover:bg-primary-container active:scale-95"
+      >
+        Volver a proyectos
+      </a>
+    </div>
+  }
+</article>

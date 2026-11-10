@@ -1,0 +1,31 @@
+<div class="space-y-6">
+  <header class="space-y-2">
+    <h1 class="font-headline-lg text-headline-lg text-on-surface">Stack</h1>
+    <p class="max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
+      Las tecnologías con las que trabajo día a día.
+    </p>
+  </header>
+
+  <div class="grid grid-cols-1 gap-gutter md:grid-cols-2">
+    @for (group of skillGroups(); track group.category) {
+      <ptf-card>
+        <div class="mb-4 flex items-center gap-3">
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary"
+          >
+            <ptf-icon [name]="groupIcon(group.category)" size="lg" />
+          </div>
+          <h2 class="font-headline-md text-headline-md text-on-surface">{{ group.label }}</h2>
+        </div>
+
+        <ul class="flex flex-wrap gap-2">
+          @for (skill of group.skills; track skill.name) {
+            <li>
+              <ptf-badge variant="neutral">{{ skill.name }}</ptf-badge>
+            </li>
+          }
+        </ul>
+      </ptf-card>
+    }
+  </div>
+</div>

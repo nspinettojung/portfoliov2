@@ -1,3 +1,165 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+/*
+ * Design tokens del portfolio.
+ * En Tailwind v4 los tokens viven en CSS con el bloque @theme.
+ * Cada variable genera utilidades: --color-primary -> bg-primary, text-primary, etc.
+ */
+@theme {
+  /* Colores */
+  --color-on-primary-fixed-variant: #2f2ebe;
+  --color-surface: #0b1326;
+  --color-on-tertiary: #00344d;
+  --color-secondary-fixed: #f0dbff;
+  --color-on-secondary: #490080;
+  --color-secondary-container: #6f00be;
+  --color-on-error: #690005;
+  --color-on-secondary-container: #d6a9ff;
+  --color-primary-fixed-dim: #c0c1ff;
+  --color-outline: #908fa0;
+  --color-surface-container: #171f33;
+  --color-on-background: #dae2fd;
+  --color-surface-container-lowest: #060e20;
+  --color-primary-fixed: #e1e0ff;
+  --color-secondary: #ddb7ff;
+  --color-tertiary-fixed-dim: #89ceff;
+  --color-error-container: #93000a;
+  --color-tertiary-container: #009ada;
+  --color-background: #0b1326;
+  --color-primary: #c0c1ff;
+  --color-on-secondary-fixed: #2c0051;
+  --color-on-error-container: #ffdad6;
+  --color-on-primary: #1000a9;
+  --color-on-tertiary-container: #002d43;
+  --color-primary-container: #8083ff;
+  --color-surface-container-low: #131b2e;
+  --color-inverse-on-surface: #283044;
+  --color-on-primary-container: #0d0096;
+  --color-outline-variant: #464554;
+  --color-surface-tint: #c0c1ff;
+  --color-tertiary: #89ceff;
+  --color-on-primary-fixed: #07006c;
+  --color-surface-container-high: #222a3d;
+  --color-tertiary-fixed: #c9e6ff;
+  --color-secondary-fixed-dim: #ddb7ff;
+  --color-on-tertiary-fixed-variant: #004c6e;
+  --color-surface-container-highest: #2d3449;
+  --color-surface-dim: #0b1326;
+  --color-on-surface: #dae2fd;
+  --color-surface-variant: #2d3449;
+  --color-inverse-primary: #494bd6;
+  --color-on-secondary-fixed-variant: #6900b3;
+  --color-on-tertiary-fixed: #001e2f;
+  --color-surface-bright: #31394d;
+  --color-on-surface-variant: #c7c4d7;
+  --color-error: #ffb4ab;
+  --color-inverse-surface: #dae2fd;
+
+  /* Tipografías */
+  --font-headline-lg: 'Geist', sans-serif;
+  --font-headline-md: 'Geist', sans-serif;
+  --font-headline-lg-mobile: 'Geist', sans-serif;
+  --font-body-md: 'Inter', sans-serif;
+  --font-body-lg: 'Inter', sans-serif;
+  --font-label-md: 'JetBrains Mono', monospace;
+  --font-label-sm: 'JetBrains Mono', monospace;
+  --font-display: 'Geist', sans-serif;
+
+  /* Tamaños de texto */
+  --text-headline-lg: 40px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 600;
+
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 1.3;
+  --text-headline-md--font-weight: 600;
+
+  --text-headline-lg-mobile: 32px;
+  --text-headline-lg-mobile--line-height: 1.2;
+  --text-headline-lg-mobile--font-weight: 600;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 400;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --text-label-md: 14px;
+  --text-label-md--line-height: 1.4;
+  --text-label-md--letter-spacing: 0.02em;
+  --text-label-md--font-weight: 500;
+
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 1.4;
+  --text-label-sm--font-weight: 500;
+
+  --text-display: 64px;
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.04em;
+  --text-display--font-weight: 700;
+
+  /* Espaciado del sistema de diseño */
+  --spacing-base: 4px;
+  --spacing-gutter: 24px;
+  --spacing-margin-desktop: 48px;
+  --spacing-margin-mobile: 16px;
+  --spacing-container-max: 1280px;
+  --spacing-stack-sm: 8px;
+  --spacing-stack-md: 16px;
+  --spacing-stack-lg: 32px;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2d3449;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #464554;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(192, 193, 255, 0.3);
+    box-shadow: 0 0 30px rgba(192, 193, 255, 0.08);
+    transform: translateY(-4px);
+  }
+}

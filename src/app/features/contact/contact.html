@@ -1,0 +1,68 @@
+<div class="mx-auto max-w-3xl space-y-8">
+  <header class="space-y-3 text-center">
+    <div class="flex justify-center">
+      <ptf-badge variant="primary">{{ profile().availability }}</ptf-badge>
+    </div>
+
+    <h1 class="font-headline-lg text-headline-lg text-on-surface">Hablemos</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant">
+      ¿Tenés un proyecto en mente o una oportunidad? Escribime.
+    </p>
+  </header>
+
+  <div class="grid gap-gutter sm:grid-cols-2">
+    <a
+      [href]="'mailto:' + profile().email"
+      class="glass-card group flex flex-col gap-3 rounded-2xl p-6"
+    >
+      <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary">
+        <ptf-icon name="mail" size="lg" />
+      </div>
+
+      <div>
+        <p class="font-label-sm text-label-sm uppercase tracking-[0.18em] text-on-surface-variant">
+          Email
+        </p>
+        <p class="mt-1 font-label-md text-label-md text-on-surface group-hover:text-primary">
+          {{ profile().email }}
+        </p>
+      </div>
+    </a>
+
+    @for (social of profile().socials; track social.label) {
+      <a
+        [href]="social.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="glass-card group flex flex-col gap-3 rounded-2xl p-6"
+      >
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary"
+        >
+          <ptf-icon [name]="social.icon" size="lg" />
+        </div>
+
+        <div>
+          <p
+            class="font-label-sm text-label-sm uppercase tracking-[0.18em] text-on-surface-variant"
+          >
+            {{ social.label }}
+          </p>
+          <p
+            class="mt-1 truncate font-label-md text-label-md text-on-surface group-hover:text-primary"
+          >
+            {{ social.url }}
+          </p>
+        </div>
+      </a>
+    }
+  </div>
+
+  <div class="glass-card rounded-2xl p-6 text-center">
+    <p class="font-body-md text-body-md text-on-surface-variant">
+      También podés encontrarme en
+      <span class="text-primary">{{ profile().location }}</span
+      >.
+    </p>
+  </div>
+</div>

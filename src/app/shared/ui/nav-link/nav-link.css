@@ -1,0 +1,11 @@
+/*
+ * Estilos del link activo. Se definen acá (y no con clases sueltas en
+ * routerLinkActive) para que ganen sobre las utilidades base de Tailwind
+ * sin depender del orden en que Tailwind genere cada clase.
+ */
+:host a.nav-link-active {
+  background-color: color-mix(in srgb, var(--color-primary-container) 20%, transparent);
+  color: var(--color-primary);
+  font-weight: 700;
+  border-color: var(--color-primary);
+}

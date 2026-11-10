@@ -1,0 +1,87 @@
+<div class="space-y-10">
+  <section class="glass-card relative overflow-hidden rounded-3xl p-6 md:p-10">
+    <div
+      class="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/10 blur-3xl"
+    ></div>
+
+    <div class="relative max-w-3xl space-y-5">
+      <ptf-badge variant="primary">{{ profile().availability }}</ptf-badge>
+
+      <div class="space-y-2">
+        <p class="font-label-md text-label-md uppercase tracking-[0.2em] text-on-surface-variant">
+          {{ profile().role }}
+        </p>
+        <h1 class="font-display text-headline-lg-mobile text-on-surface md:text-display">
+          {{ profile().name }}
+        </h1>
+      </div>
+
+      <p class="max-w-2xl font-body-lg text-body-lg text-on-surface-variant">
+        {{ profile().tagline }}
+      </p>
+
+      <div class="flex flex-wrap gap-3 pt-2">
+        <a
+          routerLink="/projects"
+          class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-label-md text-label-md text-on-primary transition-all duration-200 hover:bg-primary-container active:scale-95"
+        >
+          Ver proyectos
+          <ptf-icon name="arrow_forward" size="sm" />
+        </a>
+
+        <a
+          routerLink="/contact"
+          class="inline-flex items-center gap-2 rounded-xl border border-outline px-6 py-3 font-label-md text-label-md text-on-surface transition-all duration-200 hover:bg-surface-container-high active:scale-95"
+        >
+          Contacto
+          <ptf-icon name="mail" size="sm" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 class="font-headline-md text-headline-md text-on-surface">Proyectos destacados</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Una selección de lo que estuve construyendo.
+        </p>
+      </div>
+
+      <a
+        routerLink="/projects"
+        class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:underline"
+      >
+        Ver todos
+        <ptf-icon name="arrow_forward" size="sm" />
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 gap-gutter md:grid-cols-2 xl:grid-cols-3">
+      @for (project of featuredProjects(); track project.slug) {
+        <ptf-project-card [project]="project" (viewDetails)="openProject($event)" />
+      }
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 gap-gutter sm:grid-cols-3">
+    <a routerLink="/stack" class="glass-card rounded-2xl p-5">
+      <ptf-icon name="code" size="lg" class="text-primary" />
+      <p class="mt-3 font-headline-md text-headline-md text-on-surface">Stack</p>
+      <p class="font-body-md text-body-md text-on-surface-variant">Tecnologías y herramientas.</p>
+    </a>
+
+    <a routerLink="/about" class="glass-card rounded-2xl p-5">
+      <ptf-icon name="person" size="lg" class="text-primary" />
+      <p class="mt-3 font-headline-md text-headline-md text-on-surface">Sobre mí</p>
+      <p class="font-body-md text-body-md text-on-surface-variant">Experiencia y formación.</p>
+    </a>
+
+    <a routerLink="/contact" class="glass-card rounded-2xl p-5">
+      <ptf-icon name="mail" size="lg" class="text-primary" />
+      <p class="mt-3 font-headline-md text-headline-md text-on-surface">Contacto</p>
+      <p class="font-body-md text-body-md text-on-surface-variant">Hablemos de tu proyecto.</p>
+    </a>
+  </section>
+</div>

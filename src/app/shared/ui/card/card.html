@@ -1,0 +1,14 @@
+<article class="glass-card group flex h-full flex-col overflow-hidden rounded-2xl">
+  <!-- Slot para imagen / media. El consumidor controla el aspect ratio. -->
+  <ng-content select="[card-media]" />
+
+  <div class="flex flex-1 flex-col p-6">
+    <!-- Contenido libre de la card: título, descripción, tags, etc. -->
+    <ng-content />
+
+    <!-- Acciones ancladas al pie de la card. -->
+    <div class="mt-auto">
+      <ng-content select="[card-actions]" />
+    </div>
+  </div>
+</article>

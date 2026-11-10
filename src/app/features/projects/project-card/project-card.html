@@ -1,0 +1,50 @@
+<ptf-card>
+  <div card-media class="relative aspect-video overflow-hidden">
+    <div
+      class="absolute inset-0 z-10 bg-gradient-to-t from-surface-container-lowest/80 to-transparent"
+    ></div>
+
+    <img
+      class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+      [src]="project().imageUrl"
+      [alt]="project().title"
+    />
+
+    @if (project().badge) {
+      <div class="absolute left-4 top-4 z-20">
+        <ptf-badge variant="primary">{{ project().badge }}</ptf-badge>
+      </div>
+    }
+  </div>
+
+  <h3 class="mb-2 font-headline-md text-headline-md text-on-surface">
+    {{ project().title }}
+  </h3>
+
+  <p class="mb-6 line-clamp-2 font-body-md text-body-md text-on-surface-variant">
+    {{ project().description }}
+  </p>
+
+  @if (project().tags.length > 0) {
+    <div class="mb-8 flex flex-wrap gap-2">
+      @for (tag of project().tags; track $index) {
+        <ptf-badge variant="neutral">{{ tag }}</ptf-badge>
+      }
+    </div>
+  }
+
+  <ptf-button
+    card-actions
+    variant="glass-action"
+    size="full"
+    [ariaLabel]="'Ver detalles de ' + project().title"
+    (click)="viewDetails.emit(project())"
+  >
+    Ver detalles
+    <ptf-icon
+      name="arrow_forward"
+      size="sm"
+      class="transition-transform group-hover/btn:translate-x-1"
+    />
+  </ptf-button>
+</ptf-card>
